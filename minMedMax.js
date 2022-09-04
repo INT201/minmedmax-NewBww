@@ -2,15 +2,17 @@ const { template } = require('@babel/core')
 
 function minMedMax(n1, n2, n3) {
     let numArray = [n1,n2,n3];
-    if (numArray[0] > numArray[1]) {
-        [numArray[0], numArray[1], numArray[2]] = [numArray[1], numArray[0], numArray[2]]
+    for (i = 0; i < 2; i++) {
+        if (numArray[0] > numArray[1]) {
+            [numArray[0], numArray[1], numArray[2]] = [numArray[1], numArray[0], numArray[2]]
+        }
+        for (j = 0; j < 1; j++) {
+            if (numArray[1] > numArray[2]) {
+                [numArray[0], numArray[1], numArray[2]] = [numArray[0], numArray[2], numArray[1]]
+            }
+        }
     }
-    if (numArray[1] > numArray[2]) {
-        [numArray[0], numArray[1], numArray[2]] = [numArray[0], numArray[2], numArray[1]]
-    }
-    if (numArray[0] > numArray[1]) {
-        [numArray[0], numArray[1], numArray[2]] = [numArray[1], numArray[0], numArray[2]]
-    }
+
     return {
         min: numArray[0],
         mid: numArray[0] === numArray[1] ? numArray[2] : numArray[1],
